@@ -30,7 +30,7 @@ void* server_answer(void* arg){
 		tam = n = recv(sock[0],&cmmd,sizeof(command_header) ,0);
 
 		printf("server_answer:Number of bytes received: %d\n",n);
-		printf("command:%d\nsize:%d\nmessage:%d\n",cmmd.command,cmmd.size,cmmd.p);
+		printf("command:%c\nsize:%c\nmessage:%s\n",cmmd.command,cmmd.size,cmmd.p);
 
 	}
 	
