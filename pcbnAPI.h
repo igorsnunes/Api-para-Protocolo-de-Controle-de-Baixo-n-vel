@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 #include <stdint.h> 
-#define MAX_PAYLOAD_COMM 127
+#define MAX_PAYLOAD 127
 #define MAX_VALUE_VAR 255
 #define STATUS_CODE_ASK 0x00
 #define STATUS_CODE_ANSWER 0x01
@@ -31,7 +31,7 @@ typedef struct vheader{
 typedef struct cheader{
 	unsigned char command;
 	unsigned char size;
-	unsigned char *p;
+	unsigned char p[MAX_PAYLOAD];
 }command_header;
 
 
