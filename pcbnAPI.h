@@ -32,7 +32,7 @@ typedef struct cheader{
 	unsigned char command;
 	unsigned char size;
 	unsigned char p[MAX_PAYLOAD];
-}command_header;
+}__attribute__((packed))  command_header;
 
 
 unsigned char calculate_size(unsigned char size);

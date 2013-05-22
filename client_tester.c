@@ -28,9 +28,13 @@ void* server_answer(void* arg){
 		//printf("%c \n",buffer[0]);
 		
 		tam = n = recv(sock[0],&cmmd,sizeof(command_header) ,0);
-
+		//tam = n = recv(sock[0],&buffer,sizeof(buffer) ,0);
 		printf("server_answer:Number of bytes received: %d\n",n);
-		printf("command:%c\nsize:%c\nmessage:%s\n",cmmd.command,cmmd.size,cmmd.p);
+		//printf("command:%s\n",buffer);
+		printf("%d %d\n",cmmd.command,cmmd.size,cmmd.p);
+		for(i=0;i<(int)cmmd.size;i++){
+			printf("%x\n",cmmd.p[i]);
+		}
 
 	}
 	
@@ -56,17 +60,17 @@ int main(int argc, char **argv) {
   memset(&servaddr, 0, sizeof(servaddr));
   servaddr.sin_family = AF_INET;
   servaddr.sin_port = htons(6791);
-  servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+  servaddr.sin_addr.s_addr = inet_addr("10.0.18.36");
   connect(sock[0], (struct sockaddr *)&servaddr, sizeof(servaddr));
   receive_answer(sock);
   command_header cmmd;
   size = status_command_answer(&cmmd);
+  size = var_read_command_ask(&cmmd);
+  cmmd.p[0] = 0x01;
   while(1) {
     	
     //char message[161];
     //fgets(message, 161, stdin);
-    printf("%ld \n", sizeof(cmmd));
-
 		/* Replacing '\n' with '\0' */
     //char *tmp = strchr(message, '\n');
     //if (tmp) *tmp = '\0';
