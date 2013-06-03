@@ -44,7 +44,6 @@ int var_read_command_ask(command_header *varread);
 int var_read_command_answer(command_header *varread, int size);
 int var_write_command_ask(command_header *varwrite,int size);
 int ping_command(command_header *ping, int size);
-static int error_commands(command_header *error,int code);
 int ok_command(command_header *error);
 int bad_message_command(command_header *error);
 int op_not_supported_command(command_header *error);
